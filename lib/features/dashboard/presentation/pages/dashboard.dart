@@ -12,6 +12,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final TextEditingController searchController = TextEditingController();
   @override
   void initState() {
     getAllCards();
@@ -23,15 +24,26 @@ class _DashboardState extends State<Dashboard> {
   }
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Saved Contacts',
-          style: TextStyle(fontWeight: FontWeight.w600),
+      title: TextField(
+        controller: searchController,
+        decoration: const InputDecoration(
+          hintText: 'Search contacts...',
+          border: InputBorder.none,
         ),
-        centerTitle: true,
+        onChanged: (value) {
+          context.read<DashboardCubit>().searchCards(value);
+        },
       ),
+      centerTitle: true,
+    ),
       body: RefreshIndicator(
         onRefresh: () {
           return getAllCards();

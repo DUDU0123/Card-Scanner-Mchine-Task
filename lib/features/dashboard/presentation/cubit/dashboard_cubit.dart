@@ -16,12 +16,27 @@ class DashboardCubit extends Cubit<DashboardState> {
     try {
       final res = getAllCardDataUsecase(params: null);
       res.fold((l) {
-        emit(DashboardState(isLoading: false, cardDataList: state.cardDataList));
+        emit(DashboardState(isLoading: false, cardDataList: state.cardDataList,));
       }, (data) {
-        emit(DashboardState(isLoading: false, cardDataList: data));
+        emit(DashboardState(isLoading: false, cardDataList: data, allCardData: data));
       },);
     } catch (e) {
       emit(DashboardState(isLoading: false, cardDataList: state.cardDataList));
     }
+  }
+
+  void searchCards(String query) {
+    if (query.isEmpty) {
+      emit(state.copyWith(cardDataList: state.allCardData));
+      return;
+    }
+
+    final filtered = state.allCardData.where((card) {
+      return (card.name?.toLowerCase().contains(query.toLowerCase()) ?? false)||
+            (card.email?.toLowerCase().contains(query.toLowerCase()) ?? false) ||
+            (card.phone?.toLowerCase().contains(query.toLowerCase()) ?? false);
+    }).toList();
+
+    emit(state.copyWith(cardDataList: filtered));
   }
 }
