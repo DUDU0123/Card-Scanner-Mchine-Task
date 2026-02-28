@@ -1,7 +1,7 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
 
 class CommonActionButton extends StatelessWidget {
-  const CommonActionButton({super.key, 
+  const CommonActionButton({super.key,
     required this.icon,
     required this.label,
     required this.color,
@@ -17,12 +17,12 @@ class CommonActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: onTap,
-      icon: Icon(icon, size: 18),
+      icon: Icon(icon, size: 18.sp),
       label: Text(label),
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: EdgeInsets.symmetric(vertical: 12.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

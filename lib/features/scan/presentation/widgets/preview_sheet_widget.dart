@@ -58,15 +58,15 @@ class PreviewSheetWidget extends StatelessWidget {
                 AppConstraints.kHeight22,
                 if (state.pickedFrontImage != null) ...[
                   labelPreview('FRONT SIDE'),
-                  const SizedBox(height: 8),
+                  AppConstraints.kHeight8,
                   uploadedImageShowWidget(image: state.pickedFrontImage!),
-                  const SizedBox(height: 18),
+                  AppConstraints.kHeight18,
                 ],
                 if (state.pickedBackImage != null) ...[
                   labelPreview('BACK SIDE'),
-                  const SizedBox(height: 8),
+                  AppConstraints.kHeight8,
                   uploadedImageShowWidget(image: state.pickedBackImage!),
-                  const SizedBox(height: 18),
+                  AppConstraints.kHeight18,
                 ],
                 if (state.pickedFrontImage == null && state.pickedBackImage == null)
                   Padding(
