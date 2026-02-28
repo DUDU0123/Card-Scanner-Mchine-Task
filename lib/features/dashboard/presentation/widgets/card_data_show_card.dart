@@ -13,9 +13,9 @@ class CardDataShowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: EdgeInsets.only(bottom: 16.h),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -31,23 +31,22 @@ class CardDataShowCard extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 4),
+            AppConstraints.kHeight4,
 
             /// Company
             if (cardModel.company?.isNotEmpty ?? false)
               Text(
                 cardModel.company!,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   color: Colors.grey.shade700,
                 ),
               ),
 
-            const SizedBox(height: 12),
             AppConstraints.kHeight12,
 
-            CardInfoRow(icon: Icons.phone, text: cardModel.phone ?? ''),
-            CardInfoRow(icon: Icons.email, text: cardModel.email ?? ''),
+            if(cardModel.phone != null) CardInfoRow(icon: Icons.phone, text: cardModel.phone ?? ''),
+            if(cardModel.email != null) CardInfoRow(icon: Icons.email, text: cardModel.email ?? ''),
 
             if (cardModel.website?.isNotEmpty ?? false)
               CardInfoRow(icon: Icons.language, text: cardModel.website ?? ''),
@@ -55,24 +54,29 @@ class CardDataShowCard extends StatelessWidget {
             AppConstraints.kHeight16,
 
             /// Action Buttons
-            Row(
+            if (cardModel.phone != null && cardModel.phone?.isNotEmpty == true) Row(
               children: [
                 Expanded(
                   child: CommonActionButton(
                     icon: Icons.call,
                     label: 'Call',
                     color: Colors.green,
-                    onTap: () => launchAppUrl('tel:${cardModel.phone}'),
+                    onTap: () {
+                      final phone = AppCommonMethods.normalizeIndianPhone(cardModel.phone!);
+                      AppCommonMethods.launchAppUrl('tel:$phone');
+                    }
                   ),
                 ),
-                const SizedBox(width: 12),
+                AppConstraints.kWidth12,
                 Expanded(
                   child: CommonActionButton(
                     icon: Icons.chat,
                     label: 'WhatsApp',
                     color: Colors.teal,
-                    onTap: () =>
-                        launchAppUrl('https://wa.me/${cardModel.phone}'),
+                    onTap: () {
+                      final phone = AppCommonMethods.normalizeIndianPhone(cardModel.phone!);
+                      AppCommonMethods.launchAppUrl('https://wa.me/$phone');
+                    }
                   ),
                 ),
               ],
@@ -81,12 +85,5 @@ class CardDataShowCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void launchAppUrl(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
   }
 }

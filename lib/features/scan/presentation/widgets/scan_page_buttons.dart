@@ -71,7 +71,7 @@ class ScanPageButtons extends StatelessWidget {
                 height: 54,
                 decoration: BoxDecoration(
                   gradient: state.pickedBackImage != null && state.pickedFrontImage != null ? const LinearGradient(
-                    colors: [Color(0xFF1D4ED8), Color(0xFF3B82F6)],
+                    colors: [AppColors.accentColor, Color(0xFF3B82F6)],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ) : LinearGradient(
@@ -93,14 +93,14 @@ class ScanPageButtons extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.cloud_upload_outlined,
-                      color: Colors.white,
+                      color: AppColors.kWhite,
                       size: 20,
                     ),
                     AppConstraints.kWidth10,
                     Text(
                       'Upload Card',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.kWhite,
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.2,

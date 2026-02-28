@@ -1,22 +1,40 @@
-import 'dart:io';
-
-import 'package:business_card_scanner/core/constants/app_constraints.dart';
-import 'package:business_card_scanner/core/constants/app_global_keys.dart';
 import 'package:business_card_scanner/core/utils/app_imports.dart';
 import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
 import 'package:business_card_scanner/features/scan/presentation/widgets/preview_sheet_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class AppCommonMethods {
   static final phoneRegex = RegExp(r'(\+?\d{1,3}[\s-]?)?\d{10}');
   static final emailRegex = RegExp(r'\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b');
-  static final websiteRegex = RegExp(r'(https?:\/\/)?(www\.)?[a-z0-9]+\.[a-z]+');
+  static final websiteRegex = RegExp(
+    r'(https?:\/\/)?(www\.)?[a-z0-9]+\.[a-z]+',
+  );
 
   // photo upload tips
   static final photoUploadTips = [
-      (Icons.wb_sunny_outlined,    AppColors.amberColor,  AppColors.amberSoftColor,  'Lighting',     'Avoid shadows'),
-      (Icons.crop_free_outlined,   AppColors.tealColor,   AppColors.tealSoftColor,   'Flat Surface', 'Steady & flat'),
-      (Icons.hd_outlined,          AppColors.accentColor, AppColors.accentSoft, 'HD Quality',   'Text readable'),
+    (
+      Icons.wb_sunny_outlined,
+      AppColors.amberColor,
+      AppColors.amberSoftColor,
+      'Lighting',
+      'Avoid shadows',
+    ),
+    (
+      Icons.crop_free_outlined,
+      AppColors.tealColor,
+      AppColors.tealSoftColor,
+      'Flat Surface',
+      'Steady & flat',
+    ),
+    (
+      Icons.hd_outlined,
+      AppColors.accentColor,
+      AppColors.accentSoft,
+      'HD Quality',
+      'Text readable',
+    ),
   ];
 
   static TextStyle commonTextStyle({
@@ -43,10 +61,7 @@ class AppCommonMethods {
     );
   }
 
-  static void commonSnackBar({
-    required String message,
-    bool isError = false,
-  }) {
+  static void commonSnackBar({required String message, bool isError = false}) {
     final context = AppGlobalKeys.navigatorKey.currentContext;
     if (context == null) return;
 
@@ -64,10 +79,7 @@ class AppCommonMethods {
               Expanded(
                 child: Text(
                   message,
-                  style: TextStyle(
-                    color: AppColors.kWhite,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: AppColors.kWhite, fontSize: 14),
                 ),
               ),
             ],
@@ -82,6 +94,7 @@ class AppCommonMethods {
         ),
       );
   }
+
   // image source pick and calling pickimage method from cubit to pick image
   static void showImageSourcePicker({
     required BuildContext context,
@@ -103,9 +116,9 @@ class AppCommonMethods {
                 onTap: () {
                   Navigator.pop(context);
                   context.read<ScanCubit>().pickImage(
-                        source: ImageSource.camera,
-                        isFrontImage: isFrontImage,
-                      );
+                    source: ImageSource.camera,
+                    isFrontImage: isFrontImage,
+                  );
                 },
               ),
               ListTile(
@@ -114,9 +127,9 @@ class AppCommonMethods {
                 onTap: () {
                   Navigator.pop(context);
                   context.read<ScanCubit>().pickImage(
-                        source: ImageSource.gallery,
-                        isFrontImage: isFrontImage,
-                      );
+                    source: ImageSource.gallery,
+                    isFrontImage: isFrontImage,
+                  );
                 },
               ),
             ],
@@ -136,5 +149,38 @@ class AppCommonMethods {
         builder: (_) => PreviewSheetWidget(),
       );
     }
+  }
+
+  static Future<void> launchAppUrl(String url) async {
+    try {
+      final uri = Uri.parse(url);
+
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      debugPrint("Launch error: $e");
+    }
+  }
+
+  static String normalizeIndianPhone(String phone) {
+    // Remove spaces, dashes, brackets, etc.
+    String cleaned = phone.replaceAll(RegExp(r'[^0-9+]'), '');
+
+    // Already has country code
+    if (cleaned.startsWith('+91')) {
+      return cleaned;
+    }
+
+    // Has + but not +91 (international)
+    if (cleaned.startsWith('+')) {
+      return cleaned;
+    }
+
+    // Plain 10-digit Indian number
+    if (cleaned.length == 10) {
+      return '+91$cleaned';
+    }
+
+    // Fallback (return as-is)
+    return cleaned;
   }
 }
