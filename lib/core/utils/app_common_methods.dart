@@ -78,7 +78,7 @@ class AppCommonMethods {
             borderRadius: BorderRadius.circular(12),
           ),
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 1),
         ),
       );
   }

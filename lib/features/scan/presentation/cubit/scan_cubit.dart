@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:business_card_scanner/core/utils/app_common_methods.dart';
-import 'package:business_card_scanner/features/scan/domain/usecase/card_data_upload_usecase.dart';
+import 'package:business_card_scanner/core/domain/usecase/card_data_upload_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';

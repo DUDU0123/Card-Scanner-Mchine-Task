@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../features/scan/data/model/card_model.dart';
+import '../core/data/model/card_model.dart';
 
 class SheetsService {
   static const _webhookUrl = "https://script.google.com/macros/s/AKfycbzGa_bxfvmX4TyuLRx9DEqjTNU6cKDZSxX95gp_KJDvv30wWkAnaRZ95JHQquwPuhMs/exec";

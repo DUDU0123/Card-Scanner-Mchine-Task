@@ -1,10 +1,15 @@
 part of 'dashboard_cubit.dart';
 
-sealed class DashboardState extends Equatable {
-  const DashboardState();
+class DashboardState extends Equatable {
+  final bool isLoading;
+  final List<CardModel> cardDataList;
+  const DashboardState({
+    this.isLoading = false,
+    this.cardDataList = const [],
+  });
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isLoading, cardDataList];
 }
 
 final class DashboardInitial extends DashboardState {}

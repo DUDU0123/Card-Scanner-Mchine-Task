@@ -1,5 +1,5 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/data/model/card_model.dart';
+import 'package:business_card_scanner/core/data/model/card_model.dart';
 
 class CardParser {
   static CardModel parse(String rawText) {

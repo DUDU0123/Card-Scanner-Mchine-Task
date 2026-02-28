@@ -2,19 +2,21 @@ import 'dart:io';
 
 import 'package:business_card_scanner/core/failure/failure.dart';
 import 'package:business_card_scanner/core/utils/card_parser.dart';
+import 'package:business_card_scanner/core/data/model/card_model.dart';
 import 'package:business_card_scanner/services/hive_service.dart';
 import 'package:business_card_scanner/services/ocr_service.dart';
 import 'package:business_card_scanner/services/sheet_service.dart';
 
-abstract class CardDataUploadService {
+abstract class CardDataService {
   Future<bool> uploadCardData({required File frontImage, required File backImage});
+  List<CardModel> getAllCardData();
 }
-class CardDataUploadServiceImpl implements CardDataUploadService {
+class CardDataServiceImpl implements CardDataService {
   final OcrService ocrService;
   final SheetsService sheetService;
   final HiveService hiveService;
 
-  CardDataUploadServiceImpl({required this.ocrService, required this.sheetService, required this.hiveService});
+  CardDataServiceImpl({required this.ocrService, required this.sheetService, required this.hiveService});
   @override
   Future<bool> uploadCardData({required File frontImage, required File backImage}) async {
     try {
@@ -26,8 +28,18 @@ class CardDataUploadServiceImpl implements CardDataUploadService {
       // writing the data to sheet
       sheetService.save(finalModel);
       // storing this data to hive database
-      await hiveService.saveContact(finalModel);
+      await hiveService.saveCard(finalModel);
       return true;
+    } catch (e) {
+      throw Failure(message: e.toString());
+    }
+  }
+
+  @override
+  List<CardModel> getAllCardData() {
+    try {
+      final cardDataList = hiveService.getAllCards();
+      return cardDataList;
     } catch (e) {
       throw Failure(message: e.toString());
     }

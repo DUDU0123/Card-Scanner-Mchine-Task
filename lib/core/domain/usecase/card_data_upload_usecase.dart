@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:business_card_scanner/core/failure/failure.dart';
 import 'package:business_card_scanner/core/usecase/usecase.dart';
-import 'package:business_card_scanner/features/scan/domain/repo/card_data_repo.dart';
+import 'package:business_card_scanner/core/domain/repo/card_data_repo.dart';
 import 'package:fpdart/fpdart.dart';
 
 class CardDataUploadUsecase implements Usecase<bool,ParamModel>{
