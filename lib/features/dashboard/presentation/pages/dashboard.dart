@@ -44,30 +44,32 @@ class _DashboardState extends State<Dashboard> {
       ),
       centerTitle: true,
     ),
-      body: RefreshIndicator(
-        onRefresh: () {
-          return getAllCards();
-        },
-        child: BlocBuilder<DashboardCubit, DashboardState>(
-          builder: (context, state) {
-            if (state.isLoading) {
-              return CircularProgressIndicator(color: AppColors.accentMidColor,);
-            }
-          return state.cardDataList.isEmpty
-            ? const Center(
-                child: Text(
-                  'No contacts saved yet',
-                  style: TextStyle(fontSize: 16),
-                ),
-              )
-            : ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: state.cardDataList.length,
-                itemBuilder: (context, index) {
-                  return CardDataShowCard(cardModel: state.cardDataList[index]);
-                },
-              );
-        },),
+      body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () {
+            return getAllCards();
+          },
+          child: BlocBuilder<DashboardCubit, DashboardState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return CircularProgressIndicator(color: AppColors.accentMidColor,);
+              }
+            return state.cardDataList.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No contacts saved yet',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                )
+              : ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  itemCount: state.cardDataList.length,
+                  itemBuilder: (context, index) {
+                    return CardDataShowCard(cardModel: state.cardDataList[index]);
+                  },
+                );
+          },),
+        ),
       )
     );
   }

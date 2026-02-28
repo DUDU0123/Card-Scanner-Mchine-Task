@@ -9,7 +9,8 @@ class AppCommonMethods {
   static final phoneRegex = RegExp(r'(\+?\d{1,3}[\s-]?)?\d{10}');
   static final emailRegex = RegExp(r'\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b');
   static final websiteRegex = RegExp(
-    r'(https?:\/\/)?(www\.)?[a-z0-9]+\.[a-z]+',
+    r'(?<!@)(https?:\/\/)?(www\.)?[a-z0-9-]+\.[a-z]{2,}',
+    caseSensitive: false,
   );
 
   // photo upload tips
