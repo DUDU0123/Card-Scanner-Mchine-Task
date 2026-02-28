@@ -1,5 +1,5 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/dashboard/pages/dashboard.dart';
+import 'package:business_card_scanner/features/dashboard/presentation/pages/dashboard.dart';
 
 class ScanPageAppbar extends StatelessWidget {
   const ScanPageAppbar({super.key});

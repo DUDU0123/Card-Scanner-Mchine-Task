@@ -1,5 +1,5 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/cubit/scan_cubit.dart';
+import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ScanPageButtons extends StatelessWidget {
@@ -72,7 +72,7 @@ class ScanPageButtons extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
@@ -80,7 +80,7 @@ class ScanPageButtons extends StatelessWidget {
                   color: Colors.white,
                   size: 20,
                 ),
-                SizedBox(width: 10),
+                AppConstraints.kWidth10,
                 Text(
                   'Upload Card',
                   style: TextStyle(

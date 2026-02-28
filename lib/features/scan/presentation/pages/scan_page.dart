@@ -1,11 +1,11 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/cubit/scan_cubit.dart';
-import 'package:business_card_scanner/features/scan/widgets/image_upload_slot_widget.dart';
-import 'package:business_card_scanner/features/scan/widgets/scan_page_appbar.dart';
-import 'package:business_card_scanner/features/scan/widgets/scan_page_buttons.dart';
-import 'package:business_card_scanner/features/scan/widgets/scan_page_small_widgets.dart';
-import 'package:business_card_scanner/features/scan/widgets/section_label.dart';
-import 'package:business_card_scanner/features/scan/widgets/tips_showing_widget.dart';
+import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/image_upload_slot_widget.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/scan_page_appbar.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/scan_page_buttons.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/scan_page_small_widgets.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/section_label.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/tips_showing_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});

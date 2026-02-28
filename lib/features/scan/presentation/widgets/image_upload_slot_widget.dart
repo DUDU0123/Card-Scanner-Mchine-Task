@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/widgets/image_empty_slot_widget.dart';
-import 'package:business_card_scanner/features/scan/widgets/image_filled_slot_widget.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/image_empty_slot_widget.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/image_filled_slot_widget.dart';
 
 class ImageUploadSlotWidget extends StatelessWidget {
   const ImageUploadSlotWidget({super.key, required this.isFront, this.image});

@@ -1,8 +1,8 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/model/contact_model.dart';
+import 'package:business_card_scanner/features/scan/data/model/card_model.dart';
 
-class ContactParser {
-  static ContactModel parse(String rawText) {
+class CardParser {
+  static CardModel parse(String rawText) {
     final lines = rawText.split('\n').where((e) => e.trim().isNotEmpty).toList();
 
     String name = lines.isNotEmpty ? lines.first : '';
@@ -35,7 +35,7 @@ class ContactParser {
       }
     }
 
-    return ContactModel(
+    return CardModel(
       name: name,
       company: company,
       phone: phone,

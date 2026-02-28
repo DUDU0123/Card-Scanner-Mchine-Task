@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:business_card_scanner/core/constants/app_constraints.dart';
 import 'package:business_card_scanner/core/constants/app_global_keys.dart';
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/cubit/scan_cubit.dart';
-import 'package:business_card_scanner/features/scan/widgets/preview_sheet_widget.dart';
+import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
+import 'package:business_card_scanner/features/scan/presentation/widgets/preview_sheet_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 class AppCommonMethods {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/cubit/scan_cubit.dart';
+import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ImageFilledSlotWidget extends StatelessWidget {

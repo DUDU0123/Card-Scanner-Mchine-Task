@@ -1,6 +1,7 @@
 import 'package:business_card_scanner/core/utils/app_imports.dart';
-import 'package:business_card_scanner/features/scan/cubit/scan_cubit.dart';
-import 'package:business_card_scanner/features/scan/pages/scan_page.dart';
+import 'package:business_card_scanner/features/scan/presentation/cubit/scan_cubit.dart';
+import 'package:business_card_scanner/features/scan/presentation/pages/scan_page.dart';
+import 'package:business_card_scanner/services/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RootWidgetPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class RootWidgetPage extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => ScanCubit(),)
+            BlocProvider(create: (context) => serviceLocator<ScanCubit>())
           ],
           child: MaterialApp(
             navigatorKey: AppGlobalKeys.navigatorKey,
